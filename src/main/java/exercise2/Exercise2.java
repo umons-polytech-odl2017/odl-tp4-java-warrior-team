@@ -1,6 +1,7 @@
 package exercise2;
 
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -8,10 +9,24 @@ import java.time.LocalDate;
 
 public class Exercise2 {
 	public static void save(Classroom classroom, Path filePath) {
+		Teacher t = classroom.getTeacher();
+		Student s[] = classroom.getStudents();
 
+		try(OutputStream output = Files.newOutputStream(filePath)) {
+			ObjectOutput objectOutput = new ObjectOutputStream(output);
+			/*MySerializableObject obj = new MySerializableObject();
+			* object.writeObject(obj);*/
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static Classroom load(Path filePath) {
+		/*Charset utf8Charset = Charset.forName("UTF-8");
+		try (BufferedReader reader = Files.newBufferedReader(filePath, utf8Charset)) {
+			reader.lines().forEach(line -> ...);
+		}
+		catch (Exception e) {}*/
 		return null;
 	}
 
