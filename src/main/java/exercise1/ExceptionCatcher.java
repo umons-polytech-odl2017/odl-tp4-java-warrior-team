@@ -9,6 +9,12 @@ public class ExceptionCatcher {
 
 	void executeExceptionThrowerSafely(int value) {
 
-		exceptionThrower.throwACustomExceptionWhenValueIs42(value);
-	}
-}
+		try {
+			exceptionThrower.throwACustomExceptionWhenValueIs42(value);
+		} catch (ARuntimeException e) {
+
+		}
+
+	}}
+
+
