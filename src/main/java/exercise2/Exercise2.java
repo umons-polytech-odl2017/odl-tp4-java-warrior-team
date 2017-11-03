@@ -30,6 +30,12 @@ public class Exercise2 {
 			reader.lines().forEach(line -> ...);
 		}
 		catch (Exception e) {}*/
+		try(InputStream input = Files.newInputStream(filePath)) {
+			ObjectInput objectInput = new ObjectInputStream(input);
+			objectInput.read();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
