@@ -14,8 +14,11 @@ public class Exercise2 {
 
 		try(OutputStream output = Files.newOutputStream(filePath)) {
 			ObjectOutput objectOutput = new ObjectOutputStream(output);
-			/*MySerializableObject obj = new MySerializableObject();
-			* object.writeObject(obj);*/
+			objectOutput.writeObject(t);
+			for (Student student : s)
+			{
+				objectOutput.writeObject(student);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
