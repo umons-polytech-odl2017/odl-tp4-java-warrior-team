@@ -8,23 +8,14 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 
 public class Exercise2 {
-	public static void save(Classroom classroom, Path filePath) {
-		Teacher t = classroom.getTeacher();
-		Student s[] = classroom.getStudents();
-
+	public static void save(Classroom classroom, Path filePath) throws IOException {
 		try(OutputStream output = Files.newOutputStream(filePath)) {
 			ObjectOutput objectOutput = new ObjectOutputStream(output);
-			objectOutput.writeObject(t);
-			for (Student student : s)
-			{
-				objectOutput.writeObject(student);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
+			objectOutput.writeObject(classroom);
 		}
 	}
 
-	public static Classroom load(Path filePath) {
+	public static Classroom load(Path filePath) throws ClassNotFoundException, IOException {
 		/*Charset utf8Charset = Charset.forName("UTF-8");
 		try (BufferedReader reader = Files.newBufferedReader(filePath, utf8Charset)) {
 			reader.lines().forEach(line -> ...);
@@ -32,14 +23,11 @@ public class Exercise2 {
 		catch (Exception e) {}*/
 		try(InputStream input = Files.newInputStream(filePath)) {
 			ObjectInput objectInput = new ObjectInputStream(input);
-			objectInput.read();
-		} catch (IOException e) {
-			e.printStackTrace();
+			return  (Classroom) objectInput.readObject();
 		}
-		return null;
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		Teacher teacher = new Teacher("Claire", "Barnett",
 			LocalDate.of(1975, 3, 7), new PhoneNumber("+32 65 123 456"),
 			new Location("Ho.23", "Houdain"));
