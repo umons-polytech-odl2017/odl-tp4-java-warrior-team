@@ -8,6 +8,10 @@ public class ExceptionCatcher {
 	}
 
 	void executeExceptionThrowerSafely(int value) {
+
+		try{
 		exceptionThrower.throwACustomExceptionWhenValueIs42(value);
-	}
+	}catch(Exception e){
+			e.printStackTrace();
+		}
 }
